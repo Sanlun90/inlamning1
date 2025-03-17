@@ -71,4 +71,7 @@ INSERT INTO Orderrows (OrderID, BookID, ISBN, Amount, Price) VALUES
 (2, 2, '978-1-491-95479-3', 1, 39.99),  -- Bob beställde 1 exemplar av "Learning SQL"
 (3, 3, '978-0-321-87758-1', 1, 59.99);  -- Charlie beställde 1 exemplar av "Database System Concepts"
 
-
+SELECT * FROM books; -- Hämtar all data från tabellen Books från databasen Liten bokhandel
+SELECT * FROM customer; -- Hämtar all data från tabellen Customer från databasen Liten bokhandel
+SELECT * FROM orderrows; -- Hämtar all data från tabellen Orderrows från databasen Liten bokhandel
+SELECT * FROM orders; -- Hämtar all data från tabellen Orders från databasen Liten bokhandel
