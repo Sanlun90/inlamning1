@@ -1,4 +1,4 @@
-Inlämning 1 - Databaser YH2024 - Sandra Bäckström
+Inlämning 1 - Kurs: Databaser YH2024 - Skapad av: Sandra Bäckström
 Detta repository innehåller alla mina filer för inlämningsuppgift 1 i kursen Databaser.
 
 Beskrivning
