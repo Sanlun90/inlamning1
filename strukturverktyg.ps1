@@ -4,13 +4,18 @@ function SkapaMapp {
         [string]$Namn
     )
 
-    $sökväg = Join-Path -Path (Get-Location) -ChildPath $Namn
+    $stig = Join-Path -Path (Get-Location) -ChildPath $Namn
 
-    if (-not (Test-Path -Path $sökväg)) {
-        New-Item -ItemType Directory -Path $sökväg | Out-Null
-        Write-Host "Mappen '$Namn' har skapats."
-    } else {
-        Write-Host "Mappen '$Namn' finns redan."
+    try {
+        if (Test-Path $stig) {
+            Write-Host "Mappen '$Namn' finns redan."
+        } else {
+            New-Item -Path $stig -ItemType Directory | Out-Null
+            Write-Host "Mappen '$Namn' har skapats."
+        }
+    }
+    catch {
+        Write-Error "Fel vid skapande av mapp: $_"
     }
 }
 
