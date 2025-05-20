@@ -1,3 +1,6 @@
+# Fråga användaren om mappnamn
+$namn = Read-Host "Ange ett namn för mappen"
+
 # Funktion för att skapa en mapp
 function SkapaMapp {
     param (
@@ -44,10 +47,10 @@ try {
     $loggStig = Join-Path -Path (Join-Path $stig "logs") -ChildPath $loggFilnamn
 
 # Skriv loggmeddelande
-    $loggText = "Struktur skapad: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
-    $loggText | Out-File -FilePath $loggStig -Encoding UTF8 -Append
+    $loggText = "Loggfilen skapad: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+    $loggText | Out-File -FilePath $loggStig -Encoding UTF8 
 
-    Write-Host "Struktur skapad i: $stig"
+    Write-Host "Loggfilen är sparad i: $stig"
     Write-Host "Loggfil skapad: $loggStig"
 }
 catch {
