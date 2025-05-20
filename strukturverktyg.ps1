@@ -1,4 +1,3 @@
-# Funktion för att skapa mappstruktur
 function SkapaMapp {
     param (
         [string]$Namn
@@ -13,9 +12,21 @@ function SkapaMapp {
             New-Item -Path $stig -ItemType Directory | Out-Null
             Write-Host "Mappen '$Namn' har skapats."
         }
+
+        # Skapa undermappar oavsett om huvudmappen redan fanns eller inte
+        $undermappar = @("logs", "scripts", "temp")
+        foreach ($mapp in $undermappar) {
+            $undermappStig = Join-Path $stig $mapp
+            if (-not (Test-Path $undermappStig)) {
+                New-Item -Path $undermappStig -ItemType Directory | Out-Null
+                Write-Host "Undermapp '$mapp' skapades."
+            } else {
+                Write-Host "Undermapp '$mapp' finns redan."
+            }
+        }
     }
     catch {
-        Write-Error "Fel vid skapande av mapp: $_"
+        Write-Error "Fel vid skapande av mappstruktur: $_"
     }
 }
 
