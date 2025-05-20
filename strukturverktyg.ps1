@@ -1,3 +1,4 @@
+# Funktion för att skapa en mapp
 function SkapaMapp {
     param (
         [string]$Namn
@@ -13,23 +14,44 @@ function SkapaMapp {
             Write-Host "Mappen '$Namn' har skapats."
         }
 
-        # Skapa undermappar oavsett om huvudmappen redan fanns eller inte
-        $undermappar = @("logs", "scripts", "temp")
-        foreach ($mapp in $undermappar) {
-            $undermappStig = Join-Path $stig $mapp
-            if (-not (Test-Path $undermappStig)) {
-                New-Item -Path $undermappStig -ItemType Directory | Out-Null
-                Write-Host "Undermapp '$mapp' skapades."
-            } else {
-                Write-Host "Undermapp '$mapp' finns redan."
-            }
+# Skapa undermappar
+    $undermappar = @("logs", "scripts", "temp")
+    foreach ($mapp in $undermappar) {
+        $undermappStig = Join-Path $stig $mapp
+        if (-not (Test-Path $undermappStig)) {
+            New-Item -Path $undermappStig -ItemType Directory | Out-Null
+            Write-Host "Undermapp '$mapp' skapades."
+        } else {
+             Write-Host "Undermapp '$mapp' finns redan."
         }
     }
+}
     catch {
         Write-Error "Fel vid skapande av mappstruktur: $_"
     }
+
+    return $stig  
 }
 
-# Anropa funktionen
+# Anropa funktionen och spara huvudmappens sökväg
 $namn = "MinMapp"
-SkapaMapp -Namn $namn
+$stig = SkapaMapp -Namn $namn
+
+# Skapa loggfil med dagens datum
+try {
+    $datum = Get-Date -Format "yyyy-MM-dd"
+    $loggFilnamn = "log-$datum.txt"
+    $loggStig = Join-Path -Path (Join-Path $stig "logs") -ChildPath $loggFilnamn
+
+# Skriv loggmeddelande
+    $loggText = "Struktur skapad: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+    $loggText | Out-File -FilePath $loggStig -Encoding UTF8 -Append
+
+    Write-Host "Struktur skapad i: $stig"
+    Write-Host "Loggfil skapad: $loggStig"
+}
+catch {
+    Write-Host "Ett fel uppstod: $_"
+}
+
+
