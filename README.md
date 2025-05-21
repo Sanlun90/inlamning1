@@ -1,7 +1,7 @@
 Inlämning 1 - Kurs: Scripting och automatisering YH2024 - Skapad av: Sandra Bäckström Detta repository innehåller min fil för inlämningsuppgift 1 i kursen Scripting och automatisering.
 
 Beskrivning: Detta script innehåller kod för att en användare ska skapa en huvudmapp med tre undermappar i. I undermappen "logs" skapas en loggfil och i den loggfilen skrivs en text automatiskt ut, som berättar 
-vilken tid och vilket datum loggfilen skapades. Scriptet innehåller en kod som uppmanar användaren av skriva namnet på mappen för att komma vidare. Detta repository innehåller även min testmapp "MinMapp".
+vilken tid och vilket datum loggfilen skapades. Scriptet innehåller en kod som uppmanar användaren av skriva namnet på mappen för att komma vidare. 
 
 Instruktioner för användning: Öppna valfri kodeditor, förslagsvis Visual Studio Code. Skapa en ps1-fil och exekvera koden.
 
